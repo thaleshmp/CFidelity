@@ -31,10 +31,32 @@ namespace CFidelity.API.Controllers
         [Route("processar")]
         public IActionResult ProcessarOferta(OfertaContainerModel model)
         {
-            var extra = ProccessExtra(model);
-            var casasBahia = ProccessCasasBahia(model);
-            var pontoFrio = ProccessPontoFrio(model);
-            return Ok();
+            var list = new List<OfertaViaVarejo>();
+            var currentOferta = new OfertaViaVarejo();
+            if (model.Bandeira.ToLower() == "ponto frio")
+            {
+                currentOferta = ProccessPontoFrio(model);
+                list.Add(ProccessExtra(model));
+                list.Add(ProccessCasasBahia(model));
+            }
+            else if (model.Bandeira.ToLower() == "casas bahia")
+            {
+                currentOferta = ProccessCasasBahia(model);
+                list.Add(ProccessExtra(model));
+                list.Add(ProccessPontoFrio(model));
+            }
+            else if (model.Bandeira.ToLower() == "extra")
+            {
+                currentOferta = ProccessExtra(model);
+                list.Add(ProccessPontoFrio(model));
+                list.Add(ProccessCasasBahia(model));
+            }
+            OfertaCompareResultModel result = new OfertaCompareResultModel() { Ofertas = list };
+            if (currentOferta.PrecoSku.PrecoVenda.Preco < model.PrecoFinal)
+                result.Mensagem = "Preço desatualizado";
+
+            result.OfertaValida = list.All(x => x.PrecoSku.PrecoVenda.Preco < currentOferta.PrecoSku.PrecoVenda.Preco);
+            return Ok(result);
         }
 
         private OfertaViaVarejo ProccessExtra(OfertaContainerModel model)
@@ -42,7 +64,10 @@ namespace CFidelity.API.Controllers
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://preco.api-extra.com.br/");
             var response = client.GetStringAsync("/V1/Skus/PrecoVenda/?idssku=" + model.SKU).Result;
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejo>(response);
+            var resultApi = Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejoAPI>(response);
+            var result = new OfertaViaVarejo() { PrecoSku = resultApi.PrecoSkus.First() };
+            result.Bandeira = "Extra";
+            return result;
         }
 
         private OfertaViaVarejo ProccessCasasBahia(OfertaContainerModel model)
@@ -50,7 +75,10 @@ namespace CFidelity.API.Controllers
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://preco.api-casasbahia.com.br");
             var response = client.GetStringAsync("V1/Skus/PrecoVenda/?idssku=" + model.SKU).Result;
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejo>(response);
+            var resultApi = Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejoAPI>(response);
+            var result = new OfertaViaVarejo() { PrecoSku = resultApi.PrecoSkus.First() };
+            result.Bandeira = "Casas Bahia";
+            return result;
         }
 
         private OfertaViaVarejo ProccessPontoFrio(OfertaContainerModel model)
@@ -58,7 +86,10 @@ namespace CFidelity.API.Controllers
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://preco.api-pontofrio.com.br");
             var response = client.GetStringAsync("V1/Skus/PrecoVenda/?idssku=" + model.SKU).Result;
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejo>(response);
+            var resultApi = Newtonsoft.Json.JsonConvert.DeserializeObject<OfertaViaVarejoAPI>(response);
+            var result = new OfertaViaVarejo() { PrecoSku = resultApi.PrecoSkus.First() };
+            result.Bandeira = "Ponto Frio";
+            return result;
         }
 
         //[HttpPost]

@@ -12,6 +12,13 @@ namespace CFidelity.API.Domain.Logging
 {
     public class OfertaViaVarejo
     {
+        public string Bandeira { get; set; }
+        public bool MelhorOferta { get; set; }
+        public OfertaPrecoViaVarejo PrecoSku { get; set; }
+    }
+
+    public class OfertaViaVarejoAPI
+    {
         public IEnumerable<OfertaPrecoViaVarejo> PrecoSkus { get; set; }
     }
 
