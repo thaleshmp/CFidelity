@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{7AEA89CD-B4C7-4762-AFCF-9373694FA008}") = "CFidelity.API", "CFidelity.API\CFidelity.API.csproj", "{3343A349-29B2-4A03-AB2A-B7B47B74E9FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3343A349-29B2-4A03-AB2A-B7B47B74E9FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3343A349-29B2-4A03-AB2A-B7B47B74E9FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3343A349-29B2-4A03-AB2A-B7B47B74E9FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3343A349-29B2-4A03-AB2A-B7B47B74E9FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC826824-C2D8-4D09-9946-A4DD302DED54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC826824-C2D8-4D09-9946-A4DD302DED54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC826824-C2D8-4D09-9946-A4DD302DED54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC826824-C2D8-4D09-9946-A4DD302DED54}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6EE150D-8A4F-4960-B96E-377CF2480217}
+	EndGlobalSection
+EndGlobal
