@@ -89,14 +89,25 @@
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
                 <form action="index.html" method="GET">
-                  <p>Send the worksheet to compare</p>
-                  <div class="mdl-textfield"></div>
-                    <label class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                        Select file <input type="file" name="file">
-                    </label>
-                  </div>
+                  <p>Compare product in our partners</p>
                   <div class="mdl-textfield">
-                    <!-- QUEBRAR LAYOUT-->
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <input class="mdl-textfield__input" type="text" name="sku">
+                      <label class="mdl-textfield__label" for="sample1">SKU</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <input class="mdl-textfield__input" type="text" name="preco">
+                      <label class="mdl-textfield__label" for="sample1">Preço</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <select class="mdl-textfield__input" name="bandeira">
+                          <option></option>
+                          <option value="casas">Casas Bahia</option>
+                          <option value="extra">Extra</option>
+                          <option value="ponto">Ponto Frio</option>
+                        </select>
+                        <label class="mdl-textfield__label" for="octane">Bandeira</label>
+                      </div>
                   </div>
                   <div class="mdl-textfield"></div>
                     <button id="send" onclick="enviar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Send</button>
