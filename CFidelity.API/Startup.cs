@@ -11,6 +11,10 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.AspNetCore.Diagnostics;
 using System.Net;
 using Microsoft.AspNetCore.Http;
+using CFidelity.API.Domain.Logging;
+using CFidelity.API.Settings;
+using CFidelity.API.Repository.Interface;
+using CFidelity.API.Repository;
 
 namespace CFidelity.API
 {
@@ -35,17 +39,21 @@ namespace CFidelity.API
         {
             services.AddSingleton(Configuration);
 
+            OptionsConfigurationServiceCollectionExtensions.Configure<MongoDBSettings>(services, Configuration.GetSection("MongoDBSettings"));
+
+            services.AddScoped<IOfertaRepository, OfertaRepository>();
+
             services.AddCors();
             services.AddMvc(options =>
             {
-                
+
             }).AddJsonOptions(options =>
             {
                 options.SerializerSettings.DateFormatString = ISO_8861_DateTimeFormat;
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 // options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
             });
-            
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

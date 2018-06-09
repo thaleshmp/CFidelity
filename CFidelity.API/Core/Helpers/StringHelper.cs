@@ -155,25 +155,25 @@ namespace CFidelity.API.Core.Helpers
             return System.Text.RegularExpressions.Regex.IsMatch(cep, ("[0-9]{5}-[0-9]{3}"));
         }
 
-        public static bool IsValidImage(this string base64)
-        {
-            if (base64 == null)
-                return false;
+        //public static bool IsValidImage(this string base64)
+        //{
+        //    if (base64 == null)
+        //        return false;
 
-            try
-            {
-                byte[] bytes = System.Convert.FromBase64String(base64);
+        //    try
+        //    {
+        //        byte[] bytes = System.Convert.FromBase64String(base64);
 
-                using (var stream = new MemoryStream(bytes))
-                {
-                    var img = System.Drawing.Image.FromStream(stream);
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        //        using (var stream = new MemoryStream(bytes))
+        //        {
+        //            var img = System.Drawing.Image.FromStream(stream);
+        //            return true;
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }
