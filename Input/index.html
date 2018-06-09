@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Material Design Lite</title>
+    <title>CFidelity</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -88,19 +88,18 @@
           <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             <div class="mdl-card__supporting-text mdl-color-text--grey-600">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
-                <form action="#" method="POST"></form>
+                <form action="index.html" method="GET">
                   <p>Send the worksheet to compare</p>
                   <div class="mdl-textfield"></div>
                     <label class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                        Select file <input type="file" style="display: none;">
+                        Select file <input type="file" name="file">
                     </label>
                   </div>
                   <div class="mdl-textfield">
                     <!-- QUEBRAR LAYOUT-->
                   </div>
                   <div class="mdl-textfield"></div>
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Send</button>
-                  </div>
+                    <button id="send" onclick="enviar()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Send</button>
                 </form>
               </div>
             </div>
@@ -108,6 +107,11 @@
         </div>
       </main>
     </div>
+    <script>
+        //function enviar() {
+          //alert("Enviado");
+        //}
+    </script>
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </body>
 </html>
